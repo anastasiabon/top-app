@@ -1,12 +1,15 @@
-import { HeaderProps } from "./Header.Props";
+import { FooterProps } from "./Footer.Props";
+import { format } from 'date-fns';
 
 import cn from 'classnames';
-import styles from './Header.module.css';
+import styles from './Footer.module.css';
 
-export const Header = ({ ...props }: HeaderProps): JSX.Element => {
+export const Footer = ({ className, ...props }: FooterProps): JSX.Element => {
     return (
-        <div {...props}>
-            Header
-        </div>
-    )
+        <footer className={cn(className, styles.wrapper)} {...props}>
+            <span>OwlTop © 2020 - {format(new Date(), 'yyyy')} Все права защищены</span>
+            <span>Пользовательское соглашение</span>
+            <span>Политика конфиденциальности</span>
+        </footer>
+    );
 };

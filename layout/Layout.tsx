@@ -1,12 +1,33 @@
-import { PProps } from "./P.Props";
+import { LayoutProps } from "./Layout.Props";
+import { Header } from "./Header/Header";
+import { Sidebar } from "./Sidebar/Sidebar";
+import { Footer } from "./Footer/Footer";
 
-import cn from 'classnames';
-import styles from './P.module.css';
+import styles from './Layout.module.css';
+import {FunctionComponent} from "react";
+import {IAppContext, AppContextProvider} from "../context/app.context";
 
-export const P = ({ size = 'medium', children, className, ...props }: PProps): JSX.Element => {
+export const Layout = ({ children }: LayoutProps): JSX.Element => {
     return (
-        <p className={cn(styles.p, className, styles[size])} {...props}>
-            {children}
-        </p>
-    )
+        <div className={styles.wrapper}>
+            <Header className={styles.header} />
+            <Sidebar className={styles.sidebar} />
+            <div className={styles.body}>
+                {children}
+            </div>
+            <Footer className={styles.footer} />
+        </div>
+    );
+};
+
+export const withLayout = <T extends Record<string, unknown> & IAppContext>(Component: FunctionComponent<T>) => {
+    return function withLayoutComponent(props: T): JSX.Element {
+        return (
+            <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+                <Layout>
+                    <Component {...props} />
+                </Layout>
+            </AppContextProvider>
+        );
+    };
 };

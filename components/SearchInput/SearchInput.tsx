@@ -1,29 +1,45 @@
-import { ButtonProps } from "./Button.Props";
-import ArrowIcon from './arrow.svg';
+import { SearchInputProps } from './SearchInput.Props';
 import cn from 'classnames';
-import styles from './Button.module.css';
+import styles from './SearchInput.module.css';
+import SearchIcon from './search.svg';
 
-export const Button = ({
-    appearance,
-    children,
-    className,
-    arrow = 'none',
-    ...props
-}: ButtonProps): JSX.Element => {
+import { useRouter } from "next/router";
+import {ChangeEvent, useState} from "react";
+
+interface InputValue {
+    inputValue: string;
+}
+
+export const SearchInput = ({ value = '' }: SearchInputProps): JSX.Element => {
+    const router = useRouter();
+    const [inputValue, setInputValue] = useState<InputValue>(value);
+
+    const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
+        setInputValue(e.target.value);
+    };
+
+    const handleSearch = (): void => {
+        if (inputValue) {
+            router.push('/search',`/search/${inputValue}`);
+        }
+    };
+
     return (
-        <button className={cn(styles.button, className, {
-            [styles.primary]: appearance === 'primary',
-            [styles.ghost]: appearance === 'ghost',
-        })}
-            {...props}
-        >
-            {children}
-            {arrow !== 'none' && <span className={cn(styles.arrow, {
-                [styles.down]: arrow === 'down',
-            })}>
-                <ArrowIcon />
-            </span>}
-        </button>
+        <div className={styles.search}>
+            <input
+                type='search'
+                placeholder='Поиск...'
+                className={styles.searchInput}
+                value={inputValue}
+                onChange={(e) => handleInput(e)}
+            />
+            <button
+                className={styles.searchButton}
+                onClick={() => handleSearch()}
+            >
+                <SearchIcon />
+            </button>
+        </div>
     );
 };
 
