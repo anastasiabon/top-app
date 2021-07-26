@@ -1,8 +1,6 @@
-import {ButtonHTMLAttributes, DetailedHTMLProps, ReactNode} from "react";
+import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 
-export interface ButtonProps extends DetailedHTMLProps
-    <ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>{
-    children: ReactNode,
-    appearance: 'primary' | 'ghost',
-    arrow?: 'right' | 'down' | 'none',
+export interface SearchInputProps extends DetailedHTMLProps
+    <InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>{
+    value: string;
 }

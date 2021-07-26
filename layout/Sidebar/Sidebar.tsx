@@ -1,19 +1,17 @@
-import { LayoutProps } from "./Layout.Props";
+import { SidebarProps } from "./Sidebar.Props";
 
 import cn from 'classnames';
-import styles from './Layout.module.css';
+import styles from './Sidebar.module.css';
+import { Menu } from "../Menu/Menu";
+import { SearchInput } from "../../components";
+import Logo from '../logo.svg';
 
-export const Layout = ({ children }: LayoutProps): JSX.Element => {
+export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
     return (
-        <>
-            <Header />
-            <div>
-                <Sidebar />
-                <div>
-                    {children}
-                </div>
-            </div>
-            <Footer />
-        </>
+        <div className={cn(className, styles.sidebar)} {...props}>
+            <Logo className={styles.logo} />
+            <SearchInput />
+            <Menu />
+        </div>
     )
 };
