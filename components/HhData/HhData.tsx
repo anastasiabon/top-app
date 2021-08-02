@@ -30,7 +30,7 @@ export const HhData = ({ count, juniorSalary, middleSalary, seniorSalary }: HhDa
                     <div className={styles.salaryValue}>{priceRu(middleSalary)}</div>
                     <div className={styles.rate}>
                         <RateIcon className={styles.filled}/>
-                        <RateIcon />
+                        <RateIcon className={styles.filled}/>
                         <RateIcon />
                     </div>
                 </div>
@@ -39,8 +39,8 @@ export const HhData = ({ count, juniorSalary, middleSalary, seniorSalary }: HhDa
                     <div className={styles.salaryValue}>{priceRu(seniorSalary)}</div>
                     <div className={styles.rate}>
                         <RateIcon className={styles.filled}/>
-                        <RateIcon />
-                        <RateIcon />
+                        <RateIcon className={styles.filled}/>
+                        <RateIcon className={styles.filled}/>
                     </div>
                 </div>
             </Card>
