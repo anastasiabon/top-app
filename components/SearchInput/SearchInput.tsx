@@ -6,13 +6,9 @@ import SearchIcon from './search.svg';
 import { useRouter } from "next/router";
 import {ChangeEvent, useState} from "react";
 
-interface InputValue {
-    inputValue: string;
-}
-
 export const SearchInput = ({ value = '' }: SearchInputProps): JSX.Element => {
     const router = useRouter();
-    const [inputValue, setInputValue] = useState<InputValue>(value);
+    const [inputValue, setInputValue] = useState<string>(value);
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
         setInputValue(e.target.value);
