@@ -1,5 +1,5 @@
 import { TopPageComponentProps } from './TopPageComponent.props';
-import { Htag, Tag, HhData, Advantages, Sort } from '../../components';
+import {Htag, Tag, HhData, Advantages, Sort, Product} from '../../components';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 import {SortEnum} from "../../components/Sort/Sort.Props";
 
@@ -14,8 +14,6 @@ export const TopPageComponent = ({ page, products, firstCategory, }: TopPageComp
         dispathSort({ type: sort });
     };
 
-    console.log(products);
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.title}>
@@ -24,7 +22,7 @@ export const TopPageComponent = ({ page, products, firstCategory, }: TopPageComp
                 <Sort sort={sort} setSort={setSort} />
             </div>
             <div>
-                {sortedProducts && sortedProducts.map(p => (<div key={p._id}>{p.title}</div>))}
+                {sortedProducts && sortedProducts.map(p => <Product key={p._id} product={p} />)}
             </div>
             <div className={styles.hhTitle}>
                 <Htag tag='h2'>Вакансии - {page.category}</Htag>
