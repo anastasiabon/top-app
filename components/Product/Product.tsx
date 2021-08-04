@@ -10,6 +10,7 @@ import Image from 'next/image';
 import cn from 'classnames';
 import {useState} from "react";
 import {Review} from "../Review/Review";
+import {ReviewForm} from "../ReviewForm/ReviewForm";
 
 export const Product = ({product, className, ...props}: ProductProps): JSX.Element => {
     const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
@@ -81,8 +82,12 @@ export const Product = ({product, className, ...props}: ProductProps): JSX.Eleme
                 [styles.closed]: !isReviewOpened,
             })}>
                 {product.reviews.map(r => (
-                    <Review key={r._id} review={r} />
+                    <div key={r._id}>
+                        <Review review={r} />
+                        <Divider />
+                    </div>
                 ))}
+                <ReviewForm productId={product._id} />
             </Card>
         </>
     );
