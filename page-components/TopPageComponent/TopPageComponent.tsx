@@ -1,21 +1,20 @@
-import { TopPageComponentProps } from './TopPageComponent.props';
+import {TopPageComponentProps} from './TopPageComponent.props';
 import {Htag, Tag, HhData, Advantages, Sort, Product} from '../../components';
-import { TopLevelCategory } from '../../interfaces/page.interface';
+import {TopLevelCategory} from '../../interfaces/page.interface';
 import {SortEnum} from "../../components/Sort/Sort.Props";
-
 import styles from './TopPageComponent.module.css';
 import {sortReducer} from "./sort.reducer";
 import {useEffect, useReducer} from "react";
 
-export const TopPageComponent = ({ page, products, firstCategory, }: TopPageComponentProps): JSX.Element => {
-    const [{ products: sortedProducts, sort }, dispathSort] = useReducer(sortReducer, { products, sort: SortEnum.Rating });
+export const TopPageComponent = ({page, products, firstCategory,}: TopPageComponentProps): JSX.Element => {
+    const [{products: sortedProducts, sort}, dispathSort] = useReducer(sortReducer, {products, sort: SortEnum.Rating});
 
     const setSort = (sort: SortEnum) => {
-        dispathSort({ type: sort });
+        dispathSort({type: sort});
     };
 
     useEffect(() => {
-        dispathSort({  type: 'reset', initialState: products})
+        dispathSort({type: 'reset', initialState: products})
     }, [products]);
 
     return (
@@ -23,10 +22,10 @@ export const TopPageComponent = ({ page, products, firstCategory, }: TopPageComp
             <div className={styles.title}>
                 <Htag tag='h1'>{page.title}</Htag>
                 {products && <Tag color='green' size='medium'>{products.length}</Tag>}
-                <Sort sort={sort} setSort={setSort} />
+                <Sort sort={sort} setSort={setSort}/>
             </div>
             <div>
-                {sortedProducts && sortedProducts.map(p => <Product key={p._id} product={p} />)}
+                {sortedProducts && sortedProducts.map(p => <Product layout key={p._id} product={p}/>)}
             </div>
             <div className={styles.hhTitle}>
                 <Htag tag='h2'>Вакансии - {page.category}</Htag>
@@ -44,7 +43,7 @@ export const TopPageComponent = ({ page, products, firstCategory, }: TopPageComp
             {page.seoText && (
                 <div
                     className={styles.seo}
-                    dangerouslySetInnerHTML={{ __html: page.seoText }}
+                    dangerouslySetInnerHTML={{__html: page.seoText}}
                 />
             )}
 
