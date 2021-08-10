@@ -11,7 +11,7 @@ import cn from "classnames";
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
     const [displayed, setDisplayed] = useState<boolean>(false);
-    const bodyRef = useRef<HTMLDivElement>(null)
+    const bodyRef = useRef<HTMLDivElement>(null);
 
     const skipContentAction = (key: KeyboardEvent) => {
         if (key.code == 'Space' || key.code == 'Enter') {
